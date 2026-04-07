@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .grain-bg {
+    background-color: #f5f4f0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  }
+
+  .hero-gradient-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(30, 27, 75, 0.42) 0%,
+      rgba(15, 80, 120, 0.38) 45%,
+      rgba(15, 23, 42, 0.52) 100%
+    );
+  }
+}
+
+.section-1-background {
+  background-image: url("../../public/homepagebackgrounds/Section1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-2-background {
+  background-image: url("../../public/homepagebackgrounds/Section2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-3-background {
+  background-image: url("../../public/homepagebackgrounds/Section3.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-4-background {
+  background-image: url("../../public/homepagebackgrounds/Section4.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-5-background {
+  background-image: url("../../public/homepagebackgrounds/Section5.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-6-background {
+  background-image: url("../../public/homepagebackgrounds/Section6.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-7-background {
+  background-image: url("../../public/homepagebackgrounds/Section7.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-8-background {
+  background-image: url("../../public/homepagebackgrounds/Section8.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.section-9-background {
+  background-image: url("../../public/homepagebackgrounds/Section9.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
