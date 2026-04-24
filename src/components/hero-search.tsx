@@ -130,7 +130,7 @@ export function HeroSearch() {
             ))}
           </div>
           <Link
-            href="/explore"
+            href="/explore-beaches"
             className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#0095FF] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110"
           >
             Explore Beaches →
