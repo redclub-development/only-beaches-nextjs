@@ -3,18 +3,18 @@
  * Shared by the explore map detail drawer and the view-full “What’s On-Site” grid.
  */
 export const exploreAmenitySvg = {
-  parking: "/explore-beaches/icon1.svg",
-  showers: "/explore-beaches/icon2.svg",
-  restrooms: "/explore-beaches/icon3.svg",
-  lifeguard: "/explore-beaches/icon4.svg",
-  beachBars: "/explore-beaches/icon5.svg",
-  surfSchools: "/explore-beaches/icon6.svg",
-  beachShops: "/explore-beaches/icon7.svg",
-  firstAid: "/explore-beaches/icon8.svg",
-  dogsOk: "/explore-beaches/icon9.svg",
-  accessible: "/explore-beaches/icon10.svg",
-  fireShows: "/explore-beaches/icon11.svg",
-  publicWifi: "/explore-beaches/icon12.svg",
+  parking: "/explore-beaches/icon6.svg",
+  showers: "/explore-beaches/icon8.svg",
+  restrooms: "/explore-beaches/icon7.svg",
+  lifeguard: "/explore-beaches/icon9.svg",
+  beachBars: "/explore-beaches/icon16.svg",
+  surfSchools: "/explore-beaches/icon.svg",
+  beachShops: "/explore-beaches/icon17.svg",
+  firstAid: "/explore-beaches/icon18.svg",
+  dogsOk: "/explore-beaches/icon10.svg",
+  accessible: "/explore-beaches/icon11.svg",
+  fireShows: "/explore-beaches/icon12.svg",
+  publicWifi: "/explore-beaches/icon13.svg",
 } as const;
 
 export const onSiteFacilities = [

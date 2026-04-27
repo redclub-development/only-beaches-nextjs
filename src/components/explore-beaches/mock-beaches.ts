@@ -14,7 +14,7 @@ export type ExploreBeachCard = {
 const bondi: Omit<ExploreBeachCard, "id"> = {
   name: "Bondi Beach",
   locationLine: "Sydney, Australia",
-  imageSrc: beachImages.hero,
+  imageSrc: beachImages.explore.beach1,
   tags: ["Surf", "Party", "Family Friendly"],
   tempF: 82,
   waterCondition: "Flat",
@@ -24,7 +24,7 @@ const bondi: Omit<ExploreBeachCard, "id"> = {
 const veligandu: Omit<ExploreBeachCard, "id"> = {
   name: "Veligandu Island",
   locationLine: "North Ari Atoll, Maldives",
-  imageSrc: beachImages.trending.fulhadhoo,
+  imageSrc: beachImages.explore.beach2,
   tags: ["Snorkeling", "Secluded", "Clear Water"],
   tempF: 84,
   waterCondition: "Calm",
@@ -34,7 +34,7 @@ const veligandu: Omit<ExploreBeachCard, "id"> = {
 const whitehaven: Omit<ExploreBeachCard, "id"> = {
   name: "Whitehaven Beach",
   locationLine: "Whitsunday Island, Australia",
-  imageSrc: beachImages.trending.whitehaven,
+  imageSrc: beachImages.explore.beach3,
   tags: ["White Sand", "Family Friendly", "Calm Water"],
   tempF: 79,
   waterCondition: "Calm",
@@ -44,7 +44,7 @@ const whitehaven: Omit<ExploreBeachCard, "id"> = {
 const conigli: Omit<ExploreBeachCard, "id"> = {
   name: "Spiaggia dei Conigli",
   locationLine: "Lampedusa, Italy",
-  imageSrc: beachImages.trending.conigli,
+  imageSrc: beachImages.explore.beach4,
   tags: ["Snorkeling", "Clear Water", "Secluded"],
   tempF: 81,
   waterCondition: "Calm",

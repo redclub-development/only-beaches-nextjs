@@ -47,4 +47,11 @@ export const beachImages = {
     stay4: "/Images/nearbeaches4.jpg",
     stay5: "/Images/nearbeaches5.jpg",
   },
+  explore: {
+    beach1: "/Images/exp1.png",
+    beach2: "/Images/exp2.png",
+    beach3: "/Images/exp3.png",
+    beach4: "/Images/exp4.png",
+    weather: "/Images/weather.png",
+  },
 } as const;

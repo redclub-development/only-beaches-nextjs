@@ -97,7 +97,7 @@ export function GlobalExplorer() {
         </p>
 
         <Link
-          href="/map"
+          href="/explore-beaches"
           className="mt-8 inline-flex rounded-full bg-brand-blue px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-blue/30 transition hover:bg-brand-cyan"
         >
           Start Exploring the Map →

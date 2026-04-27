@@ -202,7 +202,7 @@ export function ViewFullBeachesPage() {
         <section className="relative min-h-[min(92vh,900px)] w-full">
           <div className="pointer-events-none absolute inset-0">
             <Image
-              src={beachImages.hero}
+              src={beachImages.explore.beach3}
               alt=""
               fill
               className="object-cover"
@@ -352,7 +352,7 @@ export function ViewFullBeachesPage() {
             <div className="group/photo relative min-h-[320px] overflow-hidden rounded-xl bg-neutral-200 md:min-h-[420px]">
               <div className="absolute inset-0 origin-center transition-transform duration-500 ease-out will-change-transform group-hover/photo:scale-110">
                 <Image
-                  src={beachImages.vibesSection}
+                  src={beachImages.explore.beach1}
                   alt=""
                   fill
                   className="object-cover"
@@ -364,7 +364,7 @@ export function ViewFullBeachesPage() {
               <div className="group/photo relative min-h-0 overflow-hidden rounded-xl bg-neutral-200">
                 <div className="absolute inset-0 origin-center transition-transform duration-500 ease-out will-change-transform group-hover/photo:scale-110">
                   <Image
-                    src={beachImages.trending.diamond}
+                    src={beachImages.explore.beach2}
                     alt=""
                     fill
                     className="object-cover"
@@ -375,7 +375,7 @@ export function ViewFullBeachesPage() {
               <div className="group/photo relative min-h-0 overflow-hidden rounded-xl bg-neutral-200">
                 <div className="absolute inset-0 origin-center transition-transform duration-500 ease-out will-change-transform group-hover/photo:scale-110">
                   <Image
-                    src={beachImages.globalSection}
+                    src={beachImages.explore.beach3}
                     alt=""
                     fill
                     className="object-cover"
@@ -386,7 +386,7 @@ export function ViewFullBeachesPage() {
               <div className="group/photo relative min-h-0 overflow-hidden rounded-xl bg-neutral-200">
                 <div className="absolute inset-0 origin-center transition-transform duration-500 ease-out will-change-transform group-hover/photo:scale-110">
                   <Image
-                    src={beachImages.moods.hidden}
+                    src={beachImages.explore.beach4}
                     alt=""
                     fill
                     className="object-cover"
@@ -397,7 +397,7 @@ export function ViewFullBeachesPage() {
               <div className="group/photo relative min-h-0 overflow-hidden rounded-xl bg-neutral-200">
                 <div className="absolute inset-0 origin-center transition-transform duration-500 ease-out will-change-transform group-hover/photo:scale-110">
                   <Image
-                    src={beachImages.trending.whitehaven}
+                    src={beachImages.explore.beach1}
                     alt=""
                     fill
                     className="object-cover"
@@ -663,10 +663,10 @@ export function ViewFullBeachesPage() {
                   </div>
                   <div className="mt-4 flex items-center gap-3">
                     <span className="text-4xl" aria-hidden>
-                      ⛅
+                      <Image src={beachImages.explore.weather} alt="" width={60} height={60} />
                     </span>
                     <div>
-                      <p className="text-4xl font-bold tabular-nums text-neutral-900">
+                      <p className="text-4xl font-bold tabular-nums text-neutral-900 text-[#FFD800]">
                         31°C
                       </p>
                       <p className="text-sm text-neutral-500">
