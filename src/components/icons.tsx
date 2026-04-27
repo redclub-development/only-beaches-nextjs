@@ -233,6 +233,21 @@ export function IconLocate({ className }: { className?: string }) {
   );
 }
 
+export function IconDiamond({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+    >
+      <path d="M12 2l2.5 7.5H22l-6.5 4.7 2.5 7.8L12 17.5 5.5 22l2.5-7.8L1.5 9.5h7.5L12 2z" />
+    </svg>
+  );
+}
+
 export function IconHeartNew({
   className,
   filled,

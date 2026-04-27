@@ -7,19 +7,14 @@ import { GlobalExplorer } from "@/components/global-explorer";
 import { HeroSearch } from "@/components/hero-search";
 import { HiddenBeachesSection } from "@/components/hidden-beaches-section";
 import { PlanBeachTripCta } from "@/components/plan-beach-trip-cta";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteChrome } from "@/components/layout/site-chrome";
 import { StayNearBeaches } from "@/components/stay-near-beaches";
 import { ThingsToDo } from "@/components/things-to-do";
 import { TrendingBeaches } from "@/components/trending-beaches";
 
 export default function Home() {
   return (
-    <>
-      <div className="relative">
-        <SiteHeader />
-        <HeroSearch />
-      </div>
+    <SiteChrome preset="home-hero" hero={<HeroSearch />}>
       <main className="bg-neutral-50">
         <FindYourVibe />
         <GlobalExplorer />
@@ -33,7 +28,6 @@ export default function Home() {
         <BeachJournal />
         <FooterWave />
       </main>
-      <SiteFooter />
-    </>
+    </SiteChrome>
   );
 }

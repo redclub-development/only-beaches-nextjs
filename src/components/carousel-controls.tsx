@@ -84,7 +84,7 @@ export function CarouselControls({
       </button>
       <div className="h-1 min-w-[120px] flex-1 max-w-md rounded-full bg-[#D4E8F7] sm:min-w-[200px]">
         <div
-          className="h-full rounded-full bg-[#0091DA] transition-all duration-150 ease-out"
+          className="h-full rounded-full bg-brand-blue transition-all duration-150 ease-out"
           style={{ width: `${barPct}%` }}
         />
       </div>

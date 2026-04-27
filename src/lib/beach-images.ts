@@ -4,6 +4,7 @@ export const beachImages = {
   vibesSection: "/Images/image13.png",
   globalSection: "/Images/image5.png",
   mapPanel: "/Images/image4.png",
+  browseAllMoods: "/Images/image25.jpg",
   moods: {
     party: "/Images/image8.png",
     surf: "/Images/image11.png",

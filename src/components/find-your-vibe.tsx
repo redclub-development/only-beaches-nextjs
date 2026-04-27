@@ -73,7 +73,7 @@ export function FindYourVibe() {
             Find your beach in seconds
           </h2>
           <Link
-            href="/moods"
+            href="/browse-all-moods"
             className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-blue/60 decoration-2 underline-offset-4 transition hover:text-brand-blue"
           >
             Browse all moods →

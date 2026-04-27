@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SiteChrome } from "@/components/layout/site-chrome";
 import { ViewFullBeachesPage } from "@/components/view-full-beaches/view-full-beaches-page";
 
 export const metadata: Metadata = {
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function ViewFullBeachesRoute() {
-  return <ViewFullBeachesPage />;
+  return (
+    <SiteChrome preset="app">
+      <ViewFullBeachesPage />
+    </SiteChrome>
+  );
 }

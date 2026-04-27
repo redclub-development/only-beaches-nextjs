@@ -186,7 +186,7 @@ export function PlanBeachTripCta() {
 
           <Link
             href="/plan"
-            className="mt-12 inline-flex items-center gap-2 rounded-full bg-[#00AEEF] px-9 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-[0_0_28px_rgba(0,174,239,0.55),0_4px_14px_rgba(0,0,0,0.2)] transition hover:brightness-110 sm:mt-14"
+            className="mt-12 inline-flex items-center gap-2 rounded-full bg-brand-cyan px-9 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-[0_0_28px_rgba(0,207,192,0.55),0_4px_14px_rgba(0,0,0,0.2)] transition hover:brightness-110 sm:mt-14"
           >
             Start Planning
             <span className="text-lg leading-none" aria-hidden>

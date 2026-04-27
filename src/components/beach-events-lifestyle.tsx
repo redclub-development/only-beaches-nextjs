@@ -108,7 +108,7 @@ export function BeachEventsLifestyle() {
               </p>
               <Link
                 href="/events/wsl-bali"
-                className="mt-6 inline-flex rounded-xl bg-[#00A3FF] px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-cyan"
+                className="mt-6 inline-flex rounded-xl bg-brand-blue px-6 py-3 text-sm font-semibold text-white shadow-md shadow-brand-cyan/20 transition hover:brightness-110"
               >
                 Get Tickets →
               </Link>

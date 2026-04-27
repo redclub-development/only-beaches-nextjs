@@ -11,9 +11,8 @@ import {
   IconWaves,
 } from "@/components/icons";
 import {
-  SiteHeader,
   SITE_HEADER_EXPLORE_MAP_STICKY_TOP_CLASS,
-  SITE_HEADER_SOLID_STICKY_TOP_CLASS,
+  SITE_HEADER_MARKETING_SOLID_STICKY_TOP_CLASS,
 } from "@/components/site-header";
 import { mapDrawerAmenities } from "@/lib/amenity-explore-icons";
 import {
@@ -735,9 +734,8 @@ export function ExploreBeaches() {
       {mapDetailBeach ? (
         <BeachMapDetailDrawer beach={mapDetailBeach} onClose={closeMapDetail} />
       ) : null}
-      <SiteHeader variant="solid" />
       <header
-        className={`sticky z-50 border-b border-neutral-300/60 bg-[#e8eaed] shadow-sm ${SITE_HEADER_SOLID_STICKY_TOP_CLASS}`}
+        className={`sticky z-50 border-b border-neutral-300/60 bg-[#e8eaed] shadow-sm ${SITE_HEADER_MARKETING_SOLID_STICKY_TOP_CLASS}`}
       >
         <div className="mx-auto max-w-[1920px] px-4 py-3 sm:px-6 lg:px-10">
           <div className="flex gap-2 overflow-x-auto pb-0.5 pt-0.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

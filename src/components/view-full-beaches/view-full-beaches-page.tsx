@@ -1,10 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SiteFooter } from "@/components/site-footer";
-import {
-  SiteHeader,
-  SITE_HEADER_SOLID_STICKY_TOP_CLASS,
-} from "@/components/site-header";
+import { SITE_HEADER_MARKETING_SOLID_STICKY_TOP_CLASS } from "@/components/site-header";
 import { beachImages } from "@/lib/beach-images";
 import { onSiteFacilities } from "@/lib/amenity-explore-icons";
 
@@ -195,9 +191,7 @@ const nearbyBeaches = [
 
 export function ViewFullBeachesPage() {
   return (
-    <>
-      <SiteHeader variant="solid" />
-      <div className="min-h-screen bg-white text-neutral-900 mb-10 pb-10">
+    <div className="min-h-screen bg-white text-neutral-900">
         {/* —— Hero (Bondi) —— */}
         <section className="relative min-h-[min(92vh,900px)] w-full">
           <div className="pointer-events-none absolute inset-0">
@@ -574,7 +568,7 @@ export function ViewFullBeachesPage() {
             </div>
 
             <aside
-              className={`flex min-w-0 flex-col gap-8 lg:z-10 lg:self-start lg:sticky ${SITE_HEADER_SOLID_STICKY_TOP_CLASS}`}
+              className={`flex min-w-0 flex-col gap-8 lg:z-10 lg:self-start lg:sticky ${SITE_HEADER_MARKETING_SOLID_STICKY_TOP_CLASS}`}
             >
               <div className="rounded-xl border border-neutral-200 bg-white p-6 shadow-sm">
                 <h3 className="text-lg font-bold text-neutral-900">
@@ -588,7 +582,7 @@ export function ViewFullBeachesPage() {
                 </div>
                 <Link
                   href="#"
-                  className="mt-4 flex w-full justify-center rounded-lg bg-[#0095FF] py-3 text-sm font-bold text-white shadow-md transition hover:brightness-110"
+                  className="mt-4 flex w-full justify-center rounded-lg bg-brand-blue py-3 text-sm font-bold text-white shadow-md shadow-brand-cyan/20 transition hover:brightness-110"
                 >
                   Book Near by Stay
                 </Link>
@@ -646,7 +640,7 @@ export function ViewFullBeachesPage() {
                     (h, i) => (
                       <div
                         key={i}
-                        className="min-w-[6px] flex-1 rounded-t bg-[#0095FF]/80"
+                        className="min-w-[6px] flex-1 rounded-t bg-brand-blue/80"
                         style={{ height: `${h}%` }}
                       />
                     ),
@@ -695,6 +689,8 @@ export function ViewFullBeachesPage() {
                 </div>
               </div>
             </aside>
+          </div>
+        </section>
 
         {/* —— Community Reviews —— */}
         <section className="border-t border-neutral-200 bg-white px-4 py-12 sm:px-6 lg:px-8">
@@ -789,9 +785,6 @@ export function ViewFullBeachesPage() {
             </div>
           </div>
         </section>
-          </div>
-          
-        </section>
 
         {/* —— Beaches Nearby —— */}
         <section className="bg-white px-4 py-12 sm:px-6 lg:px-8 mb-10">
@@ -863,7 +856,5 @@ export function ViewFullBeachesPage() {
           </div>
         </section>
       </div>
-      <SiteFooter />
-    </>
   );
 }

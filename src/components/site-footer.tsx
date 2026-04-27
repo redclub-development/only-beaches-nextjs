@@ -90,9 +90,24 @@ function FooterColumn({
   );
 }
 
-export function SiteFooter() {
+export type SiteFooterVariant = "home" | "app";
+
+type SiteFooterProps = {
+  /**
+   * `home` — overlaps preceding wave/section (negative margin).  
+   * `app` — inner pages; flush top, normal padding.
+   */
+  variant?: SiteFooterVariant;
+};
+
+export function SiteFooter({ variant = "home" }: SiteFooterProps) {
+  const footerClass =
+    variant === "home"
+      ? "relative z-10 -mt-20 bg-brand-footer px-4 pb-16 pt-32 text-white sm:-mt-24 sm:px-6 sm:pt-36 lg:px-8"
+      : "relative z-10 bg-brand-footer px-4 pb-16 pt-16 text-white sm:px-6 sm:pt-20 lg:px-8";
+
   return (
-    <footer className="relative z-10 -mt-20 bg-brand-footer px-4 pb-16 pt-32 text-white sm:-mt-24 sm:px-6 sm:pt-36 lg:px-8">
+    <footer className={footerClass}>
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
