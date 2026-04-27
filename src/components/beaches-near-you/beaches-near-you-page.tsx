@@ -68,7 +68,7 @@ function BeachResultCard({ b }: { b: NearbyBeachCard }) {
           aria-label={`View ${b.name}`}
         />
         <span className="pointer-events-none absolute bottom-3 left-3 z-[2] inline-flex items-center gap-1 rounded-full bg-black/65 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
-          <IconMapPin className="h-3 w-3 shrink-0 text-brand-cyan" />
+          <IconMapPin className="h-3 w-3 shrink-0 text-[#00CFC0]" />
           {formatDistance(b.distanceKm)}
         </span>
         <button
@@ -81,7 +81,7 @@ function BeachResultCard({ b }: { b: NearbyBeachCard }) {
       </div>
       <div className="mt-4 px-0.5">
         <h3 className="font-sans text-base font-extrabold uppercase leading-snug tracking-wide text-neutral-900 sm:text-lg">
-          <Link href="/explore-beaches" className="hover:text-brand-cyan">
+          <Link href="/explore-beaches" className="hover:text-[#00CFC0]">
             {b.name}
           </Link>
         </h3>
@@ -93,7 +93,7 @@ function BeachResultCard({ b }: { b: NearbyBeachCard }) {
           {b.categories.map((c) => (
             <span
               key={c}
-              className="rounded-full border border-brand-cyan/25 bg-brand-cyan/10 px-2.5 py-1 text-[11px] font-semibold text-brand-cyan"
+              className="rounded-full border border-brand-cyan/25 bg-brand-cyan/10 px-2.5 py-1 text-[11px] font-semibold text-[#00CFC0]"
             >
               {c}
             </span>
@@ -117,7 +117,7 @@ function BeachResultCard({ b }: { b: NearbyBeachCard }) {
           {b.features.map((f) => (
             <span
               key={f}
-              className="rounded-full border border-brand-cyan/20 bg-brand-cyan/10 px-2.5 py-1 text-[11px] font-semibold text-brand-cyan"
+              className="rounded-full border border-brand-cyan/20 bg-brand-cyan/10 px-2.5 py-1 text-[11px] font-semibold text-[#00CFC0]"
             >
               {f}
             </span>
@@ -182,7 +182,7 @@ export function BeachesNearYouPage() {
               <div className="rounded-2xl border border-white/20 bg-black/50 px-1 py-4 shadow-inner backdrop-blur-md sm:px-2 sm:py-5">
                 <dl className="flex divide-x divide-white/15">
                   <div className="flex min-w-0 flex-1 flex-col items-start gap-1 px-2 sm:px-4">
-                    <dd className="text-2xl font-extrabold tabular-nums leading-none text-brand-cyan sm:text-3xl">
+                    <dd className="text-2xl font-extrabold tabular-nums leading-none text-[#00CFC0] sm:text-3xl">
                       {nearbyHeroStats.beachCount}
                     </dd>
                     <dt className="text-[8px] font-bold uppercase leading-tight tracking-wide text-white/90 sm:text-[10px]">
@@ -190,7 +190,7 @@ export function BeachesNearYouPage() {
                     </dt>
                   </div>
                   <div className="flex min-w-0 flex-1 flex-col items-start gap-1 px-2 sm:px-4">
-                    <dd className="text-lg font-extrabold uppercase tabular-nums text-brand-cyan sm:text-xl">
+                    <dd className="text-lg font-extrabold uppercase tabular-nums text-[#00CFC0] sm:text-xl">
                       {nearbyHeroStats.closestKm} km
                     </dd>
                     <dt className="text-[8px] font-bold uppercase leading-tight tracking-wide text-white/90 sm:text-[10px]">
@@ -198,7 +198,7 @@ export function BeachesNearYouPage() {
                     </dt>
                   </div>
                   <div className="flex min-w-0 flex-1 flex-col items-start gap-1 px-2 sm:px-4">
-                    <dd className="text-lg font-extrabold tabular-nums text-brand-cyan sm:text-xl">
+                    <dd className="text-lg font-extrabold tabular-nums text-[#00CFC0] sm:text-xl">
                       {nearbyHeroStats.avgWaterTempC}°C
                     </dd>
                     <dt className="text-[8px] font-bold uppercase leading-tight tracking-wide text-white/90 sm:text-[10px]">
@@ -206,7 +206,7 @@ export function BeachesNearYouPage() {
                     </dt>
                   </div>
                   <div className="flex min-w-0 flex-1 flex-col items-start gap-1 px-2 sm:px-4">
-                    <dd className="text-lg font-extrabold tabular-nums text-brand-cyan sm:text-xl">
+                    <dd className="text-lg font-extrabold tabular-nums text-[#00CFC0] sm:text-xl">
                       {nearbyHeroStats.todayWeatherC}°C
                     </dd>
                     <dt className="text-[8px] font-bold uppercase leading-tight tracking-wide text-white/90 sm:text-[10px]">
@@ -247,7 +247,7 @@ export function BeachesNearYouPage() {
                 }}
                 className={`rounded-full border px-3.5 py-2 text-xs font-semibold transition sm:text-sm ${
                   active
-                    ? "border-brand-cyan bg-brand-cyan/15 text-brand-cyan"
+                    ? "border-brand-cyan bg-brand-cyan/15 text-[#00CFC0]"
                     : "border-neutral-200 bg-white text-neutral-700 hover:border-neutral-300"
                 }`}
               >
@@ -285,7 +285,7 @@ export function BeachesNearYouPage() {
               <option value="name">Name (A–Z)</option>
             </select>
             <div className="flex items-center gap-1 rounded-full border border-neutral-200 p-1">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-cyan/15 text-brand-cyan" title="Grid">
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-cyan/15 text-[#00CFC0]" title="Grid">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                   <path d="M4 4h7v7H4V4zm9 0h7v7h-7V4zM4 13h7v7H4v-7zm9 0h7v7h-7v-7z" />
                 </svg>
@@ -332,7 +332,7 @@ export function BeachesNearYouPage() {
                 <span className="h-px max-w-12 flex-1 bg-neutral-300" />
               </div>
               <h2 className="font-sans text-2xl font-extrabold uppercase tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl">
-                Best for <span className="text-brand-cyan">this weekend</span>
+                Best for <span className="text-[#00CFC0]">this weekend</span>
               </h2>
               <p className="mt-2 max-w-xl text-sm text-neutral-600 sm:text-base">
                 Great weather + lower crowds = perfect timing right now.
@@ -340,7 +340,7 @@ export function BeachesNearYouPage() {
             </div>
             <Link
               href="/explore-beaches"
-              className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-cyan/50 decoration-2 underline-offset-4 hover:text-brand-cyan"
+              className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-cyan/50 decoration-2 underline-offset-4 hover:text-[#00CFC0]"
             >
               View all →
             </Link>
@@ -375,7 +375,7 @@ export function BeachesNearYouPage() {
                     </button>
                   </div>
                   <h3 className="mt-4 font-mono text-sm font-bold uppercase leading-snug tracking-tight text-neutral-900 line-clamp-1">
-                    <Link href="/explore-beaches" className="hover:text-brand-cyan">
+                    <Link href="/explore-beaches" className="hover:text-[#00CFC0]">
                       {w.name}
                     </Link>
                   </h3>
@@ -396,7 +396,7 @@ export function BeachesNearYouPage() {
                     {w.tags.map((t) => (
                       <span
                         key={t}
-                        className="rounded-md border border-brand-cyan/25 bg-brand-cyan/10 px-2 py-0.5 text-[11px] font-semibold text-brand-cyan"
+                        className="rounded-md border border-brand-cyan/25 bg-brand-cyan/10 px-2 py-0.5 text-[11px] font-semibold text-[#00CFC0]"
                       >
                         {t}
                       </span>
@@ -417,7 +417,7 @@ export function BeachesNearYouPage() {
             <span className="h-px max-w-12 flex-1 bg-neutral-300" />
           </div>
           <h2 className="font-sans text-2xl font-extrabold uppercase tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl">
-            Less <span className="text-brand-cyan">crowded</span> picks
+            Less <span className="text-[#00CFC0]">crowded</span> picks
           </h2>
           <p className="mt-2 max-w-xl text-sm text-neutral-600 sm:text-base">Same coastline energy — fewer towels on the sand.</p>
           <ul className="no-scrollbar mt-8 flex snap-x gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
@@ -440,7 +440,7 @@ export function BeachesNearYouPage() {
                 <span className="h-px max-w-12 flex-1 bg-neutral-300" />
               </div>
               <h2 className="font-sans text-2xl font-extrabold uppercase tracking-tight text-neutral-900 sm:text-3xl">
-                Nearby <span className="text-brand-cyan">experience</span>
+                Nearby <span className="text-[#00CFC0]">experience</span>
               </h2>
               <p className="mt-2 text-sm text-neutral-600 sm:text-base">Lessons, rentals, and guided days steps from the sand.</p>
             </div>
@@ -484,7 +484,7 @@ export function BeachesNearYouPage() {
                 <span className="h-px max-w-12 flex-1 bg-neutral-300" />
               </div>
               <h2 className="font-sans text-2xl font-extrabold uppercase tracking-tight text-neutral-900 sm:text-3xl">
-                Stays near <span className="text-brand-cyan">these beaches</span>
+                Stays near <span className="text-[#00CFC0]">these beaches</span>
               </h2>
             </div>
             <Link href="/explore-beaches" className="text-sm font-semibold text-neutral-800 underline-offset-4 hover:underline">
@@ -510,7 +510,7 @@ export function BeachesNearYouPage() {
                   <h3 className="mt-4 text-xs font-extrabold uppercase leading-snug text-neutral-900">{s.name}</h3>
                   <p className="mt-1 text-[11px] text-neutral-500">{s.distanceLine}</p>
                   <div className="mt-3 flex items-center justify-between gap-2">
-                    <span className="text-sm font-bold text-brand-cyan">
+                    <span className="text-sm font-bold text-[#00CFC0]">
                       ${s.priceNight.toLocaleString()}
                       <span className="text-xs font-semibold text-neutral-500"> /night</span>
                     </span>
@@ -534,7 +534,7 @@ export function BeachesNearYouPage() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">Ready to go?</p>
           <h2 className="mt-3 font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl">
-            Plan your <span className="text-brand-cyan">beach day</span>
+            Plan your <span className="text-[#00CFC0]">beach day</span>
           </h2>
           <p className="mt-4 text-neutral-600 sm:text-lg">
             Save beaches, create a trip itinerary, and share your beach day plan with friends.

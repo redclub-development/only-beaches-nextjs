@@ -149,7 +149,7 @@ export function BeachMoodDetailPage({ data }: Props) {
             <div className="mt-8 w-full max-w-4xl rounded-2xl border border-white/20 bg-black/45 py-4 shadow-inner backdrop-blur-md sm:py-5">
               <dl className="flex divide-x divide-white/15">
                 <div className="flex min-w-0 flex-1 flex-col items-center gap-1 px-2 py-1 text-center sm:px-4">
-                  <dd className="text-2xl font-extrabold tabular-nums leading-none text-brand-cyan sm:text-3xl md:text-4xl">
+                  <dd className="text-2xl font-extrabold tabular-nums leading-none text-[#00CFC0] sm:text-3xl md:text-4xl">
                     {heroStats.beachCountLabel}
                   </dd>
                   <dt className="text-[9px] font-bold uppercase leading-tight tracking-[0.1em] text-white/90 sm:text-[11px]">
@@ -157,7 +157,7 @@ export function BeachMoodDetailPage({ data }: Props) {
                   </dt>
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col items-center gap-1 px-2 py-1 text-center sm:px-4">
-                  <dd className="text-base font-extrabold uppercase leading-tight tracking-wide text-brand-cyan sm:text-lg md:text-xl">
+                  <dd className="text-base font-extrabold uppercase leading-tight tracking-wide text-[#00CFC0] sm:text-lg md:text-xl">
                     {heroStats.bestSeason}
                   </dd>
                   <dt className="text-[9px] font-bold uppercase leading-tight tracking-[0.1em] text-white/90 sm:text-[11px]">
@@ -165,7 +165,7 @@ export function BeachMoodDetailPage({ data }: Props) {
                   </dt>
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col items-center gap-1 px-2 py-1 text-center sm:px-4">
-                  <dd className="text-base font-extrabold uppercase leading-tight tracking-wide text-brand-cyan sm:text-lg md:text-xl">
+                  <dd className="text-base font-extrabold uppercase leading-tight tracking-wide text-[#00CFC0] sm:text-lg md:text-xl">
                     {heroStats.topRegion}
                   </dd>
                   <dt className="text-[9px] font-bold uppercase leading-tight tracking-[0.1em] text-white/90 sm:text-[11px]">
@@ -173,7 +173,7 @@ export function BeachMoodDetailPage({ data }: Props) {
                   </dt>
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col items-center gap-1 px-2 py-1 text-center sm:px-4">
-                  <dd className="text-base font-extrabold uppercase leading-tight tracking-wide text-brand-cyan sm:text-lg md:text-xl">
+                  <dd className="text-base font-extrabold uppercase leading-tight tracking-wide text-[#00CFC0] sm:text-lg md:text-xl">
                     {heroStats.avgCrowd}
                   </dd>
                   <dt className="text-[9px] font-bold uppercase leading-tight tracking-[0.1em] text-white/90 sm:text-[11px]">
@@ -268,7 +268,7 @@ export function BeachMoodDetailPage({ data }: Props) {
             </select>
             <div className="flex items-center gap-1 rounded-lg border border-neutral-200 p-1">
               <span
-                className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-brand-cyan/15 text-brand-cyan"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-brand-cyan/15 text-[#00CFC0]"
                 aria-current="true"
                 title="Grid view"
               >
@@ -353,11 +353,11 @@ export function BeachMoodDetailPage({ data }: Props) {
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-600">Handpicked by our team</p>
               <h2 id="editors-heading" className="mt-2 font-sans text-3xl font-extrabold uppercase tracking-tight text-neutral-900 sm:text-4xl">
-                Editor&apos;s <span className="text-brand-cyan">favourites</span>
+                Editor&apos;s <span className="text-[#00CFC0]">favourites</span>
               </h2>
               <p className="mt-3 max-w-xl text-neutral-600">Top beaches that nail this mood — temperature, water, and vibe in one glance.</p>
             </div>
-            <Link href="/explore-beaches" className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-cyan/60 decoration-2 underline-offset-4 hover:text-brand-cyan">
+            <Link href="/explore-beaches" className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-cyan/60 decoration-2 underline-offset-4 hover:text-[#00CFC0]">
               View all →
             </Link>
           </div>
@@ -376,7 +376,7 @@ export function BeachMoodDetailPage({ data }: Props) {
                 <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
                   <h3 className="text-2xl font-extrabold uppercase tracking-wide text-white sm:text-3xl">
                     {largePick.name}{" "}
-                    <span className="text-brand-cyan">{largePick.nameAccentWord}</span>
+                    <span className="text-[#00CFC0]">{largePick.nameAccentWord}</span>
                   </h3>
                   <p className="mt-1 text-sm text-white/90">{largePick.location}</p>
                   <div className="mt-4 flex flex-wrap gap-2">
@@ -405,7 +405,7 @@ export function BeachMoodDetailPage({ data }: Props) {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/40 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
                     <h3 className="text-lg font-extrabold uppercase tracking-wide text-white sm:text-xl">
-                      {pick.name} <span className="text-brand-cyan">{pick.nameAccentWord}</span>
+                      {pick.name} <span className="text-[#00CFC0]">{pick.nameAccentWord}</span>
                     </h3>
                     <p className="mt-0.5 text-xs text-white/90 sm:text-sm">{pick.location}</p>
                     <div className="mt-3 flex flex-wrap gap-2">
@@ -432,7 +432,7 @@ export function BeachMoodDetailPage({ data }: Props) {
           <div className="mb-10">
             <p className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-600">Explore more</p>
             <h2 id="related-heading" className="mt-2 font-sans text-3xl font-extrabold uppercase tracking-tight text-neutral-900 sm:text-4xl">
-              Related <span className="text-brand-cyan">collections</span>
+              Related <span className="text-[#00CFC0]">collections</span>
             </h2>
             <p className="mt-3 max-w-xl text-neutral-600">Trending moods that pair well with this shoreline energy.</p>
           </div>
@@ -453,7 +453,7 @@ export function BeachMoodDetailPage({ data }: Props) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent" />
                   <div className="relative z-10 mt-auto p-4 sm:p-5">
-                    <p className="text-sm font-semibold text-brand-cyan">{m.beachCount} beaches</p>
+                    <p className="text-sm font-semibold text-[#00CFC0]">{m.beachCount} beaches</p>
                     <h3 className="mt-1 font-sans text-lg font-extrabold uppercase leading-tight tracking-wide text-white sm:text-xl">{m.title}</h3>
                   </div>
                 </Link>
@@ -469,7 +469,7 @@ export function BeachMoodDetailPage({ data }: Props) {
           <h2 className="mt-3 font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl">
             Plan your perfect
             <br />
-            <span className="text-brand-cyan">beach escape</span>
+            <span className="text-[#00CFC0]">beach escape</span>
           </h2>
           <p className="mt-5 text-neutral-600 sm:text-lg">
             Save spots, compare conditions, and build an itinerary that matches how you actually like to spend time on the sand.

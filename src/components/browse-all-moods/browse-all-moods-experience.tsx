@@ -33,7 +33,7 @@ function ArrowCircleIcon({
   const ring =
     variant === "white"
       ? "border-2 border-white text-white"
-      : "border-2 border-brand-cyan text-brand-cyan";
+      : "border-2 border-brand-cyan text-[#00CFC0]";
   return (
     <span
       className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${ring}`}
@@ -270,7 +270,7 @@ export function BrowseAllMoodsExperience() {
                   className="font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl"
                 >
                   Trending{" "}
-                  <span className="text-brand-cyan">moods</span>
+                  <span className="text-[#00CFC0]">moods</span>
                 </h2>
                 <p className="mt-3 max-w-xl text-base text-neutral-600 sm:text-lg">
                   The most-explored beach categories right now.
@@ -278,7 +278,7 @@ export function BrowseAllMoodsExperience() {
               </div>
               <Link
                 href="#all-moods"
-                className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-cyan/60 decoration-2 underline-offset-4 transition hover:text-brand-cyan"
+                className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-cyan/60 decoration-2 underline-offset-4 transition hover:text-[#00CFC0]"
               >
                 View all →
               </Link>
@@ -318,7 +318,7 @@ export function BrowseAllMoodsExperience() {
                         {m.description}
                       </p>
                       <div className="mt-4 flex items-center justify-between gap-2">
-                        <span className="text-sm font-semibold text-brand-cyan">
+                        <span className="text-sm font-semibold text-[#00CFC0]">
                           {m.beachCount} beaches
                         </span>
                         <ArrowCircleIcon variant="white" />
@@ -346,7 +346,7 @@ export function BrowseAllMoodsExperience() {
                         onClick={() => setActiveCategory(category)}
                         className={`relative pb-2 text-sm font-semibold transition ${
                           isActive
-                            ? "text-brand-cyan"
+                            ? "text-[#00CFC0]"
                             : "text-neutral-600 hover:text-neutral-900"
                         }`}
                       >
@@ -354,7 +354,7 @@ export function BrowseAllMoodsExperience() {
                         <span
                           className={
                             isActive
-                              ? "text-brand-cyan/90"
+                              ? "text-[#00CFC0]/90"
                               : "text-neutral-400"
                           }
                         >
@@ -381,7 +381,7 @@ export function BrowseAllMoodsExperience() {
                   </span>
                 </div>
                 <h2 className="font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
-                  All beach <span className="text-brand-cyan">moods</span>
+                  All beach <span className="text-[#00CFC0]">moods</span>
                 </h2>
               </div>
               <p className="text-sm font-medium text-neutral-600 lg:pb-1">
@@ -419,7 +419,7 @@ export function BrowseAllMoodsExperience() {
                         {mood.description}
                       </p>
                       <div className="mt-2 flex items-center justify-between gap-3 border-t border-neutral-100 pt-4">
-                        <span className="text-sm font-semibold text-brand-cyan">
+                         <span className="text-sm font-semibold text-[#00CFC0]">
                           {mood.beachCount} beaches
                         </span>
                         <ArrowCircleIcon />
@@ -486,7 +486,7 @@ export function BrowseAllMoodsExperience() {
               className="max-w-3xl font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl"
             >
               Where in the{" "}
-              <span className="text-brand-cyan">world?</span>
+              <span className="text-[#00CFC0]">world?</span>
             </h2>
             <p className="mt-3 max-w-xl text-base text-neutral-600 sm:text-lg">
               Filter beach moods by your dream destination.
@@ -513,7 +513,7 @@ export function BrowseAllMoodsExperience() {
                       <span className="block text-[10px] font-bold uppercase leading-tight tracking-wide text-white sm:text-xs">
                         {r.name}
                       </span>
-                      <span className="mt-1 block text-[10px] font-semibold text-brand-cyan sm:text-xs">
+                      <span className="mt-1 block text-[10px] font-semibold text-[#00CFC0] sm:text-xs">
                         {r.beachCount} beaches
                       </span>
                     </div>
@@ -531,7 +531,7 @@ export function BrowseAllMoodsExperience() {
             </p>
             <h2 className="mt-4 font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl">
               Ready to discover your{" "}
-              <span className="text-brand-cyan">next escape?</span>
+              <span className="text-[#00CFC0]">next escape?</span>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-base text-neutral-600 sm:text-lg">
               Search thousands of curated beaches by mood, weather, and crowd —

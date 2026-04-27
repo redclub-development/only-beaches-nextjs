@@ -124,7 +124,7 @@ export function SiteHeader({
               type="button"
               className="hidden items-center gap-1.5 rounded-full border border-brand-cyan/30 bg-brand-cyan/10 px-2.5 py-1 text-left text-[11px] font-semibold text-neutral-800 transition hover:bg-brand-cyan/15 lg:inline-flex lg:px-3 lg:text-xs"
             >
-              <IconMapPin className="h-3.5 w-3.5 shrink-0 text-brand-cyan" />
+              <IconMapPin className="h-3.5 w-3.5 shrink-0 text-[#00CFC0]" />
               <span className="max-w-[6.5rem] truncate lg:max-w-[9rem]">
                 Los Angeles, CA
               </span>
