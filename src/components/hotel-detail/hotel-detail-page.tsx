@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import type { HotelDetailData } from "@/data/hotel-detail";
 import { getStayBySlug } from "@/data/stay-near-beaches-catalog";
-import { IconCalendar, IconHeart, IconWaves } from "@/components/icons";
+import { IconCalendar, IconHeartNew, IconWaves } from "@/components/icons";
 
 const cx = "text-[#00CFC0]";
 const cxSoft = "bg-[#00CFC0]/10 text-[#00CFC0]";
@@ -150,7 +150,7 @@ export function HotelDetailPage({ data }: { data: HotelDetailData }) {
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition hover:bg-black/60"
                   aria-label="Save"
                 >
-                  <IconHeart className="h-4 w-4" />
+                  <IconHeartNew className="h-4 w-4" />
                 </button>
                 <button
                   type="button"
@@ -332,7 +332,7 @@ export function HotelDetailPage({ data }: { data: HotelDetailData }) {
                         className="absolute right-2 top-2 z-10 flex h-8 w-8 items-center justify-center rounded-full border border-white/40 bg-white/15 text-white backdrop-blur-sm transition duration-200 hover:scale-105 hover:border-[#E39177] hover:bg-[#E39177] hover:text-white hover:shadow-[0_8px_20px_rgba(227,145,119,0.4)]"
                         aria-label="Save room"
                       >
-                        <IconHeart className="h-3.5 w-3.5" />
+                        <IconHeartNew className="h-3.5 w-3.5" />
                       </button>
                     </div>
                     <div className="min-w-0 flex-1 p-4 sm:p-6">
@@ -538,7 +538,7 @@ export function HotelDetailPage({ data }: { data: HotelDetailData }) {
                         className="absolute bottom-2 right-2 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-white/15 text-white backdrop-blur-sm transition duration-200 hover:scale-105 hover:border-[#E39177] hover:bg-[#E39177] hover:text-white hover:shadow-[0_8px_20px_rgba(227,145,119,0.4)]"
                         aria-label="Save beach"
                       >
-                        <IconHeart className="h-4 w-4" />
+                        <IconHeartNew className="h-4 w-4" />
                       </button>
                     </div>
                     <div className="p-4">

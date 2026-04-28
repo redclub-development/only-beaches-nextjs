@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { beachImages } from "@/lib/beach-images";
-import { IconHeart } from "@/components/icons";
+import { IconHeartNew } from "@/components/icons";
 
 export function HiddenBeachesSection() {
   return (
@@ -77,7 +77,7 @@ export function HiddenBeachesSection() {
               className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/90 text-neutral-700 shadow backdrop-blur-sm"
               aria-label="Save"
             >
-              <IconHeart className="h-5 w-5" />
+              <IconHeartNew className="h-5 w-5" />
             </button>
             <div className="pointer-events-none absolute inset-0 z-[8] bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-[9] p-6">
@@ -122,7 +122,7 @@ export function HiddenBeachesSection() {
               className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-white/90 text-neutral-700"
               aria-label="Save"
             >
-              <IconHeart className="h-4 w-4" />
+              <IconHeartNew className="h-4 w-4" />
             </button>
             <div className="pointer-events-none absolute inset-0 z-[8] bg-gradient-to-t from-black/88 via-black/30 to-transparent" />
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-[9] p-4">
@@ -169,7 +169,7 @@ export function HiddenBeachesSection() {
               className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-white/90 text-neutral-700"
               aria-label="Save"
             >
-              <IconHeart className="h-4 w-4" />
+              <IconHeartNew className="h-4 w-4" />
             </button>
             <div className="pointer-events-none absolute inset-0 z-[8] bg-gradient-to-t from-black/88 via-black/30 to-transparent" />
             <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-[9] p-4">

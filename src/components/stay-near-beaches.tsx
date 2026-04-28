@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HorizontalCarouselRow } from "@/components/horizontal-carousel-row";
-import { IconHeart } from "@/components/icons";
+import { IconHeartNew } from "@/components/icons";
 import { staysNearBeachesCatalog } from "@/data/stay-near-beaches-catalog";
 
 export function StayNearBeaches() {
@@ -64,7 +64,7 @@ export function StayNearBeaches() {
                     className="absolute right-3 top-3 z-[3] flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/90 text-neutral-700 shadow backdrop-blur-sm"
                     aria-label="Save stay"
                   >
-                    <IconHeart className="h-4 w-4" />
+                    <IconHeartNew className="h-4 w-4" />
                   </button>
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 pt-16">
                     <h3 className="text-sm font-bold uppercase tracking-wide text-white">

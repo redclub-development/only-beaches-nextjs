@@ -12,45 +12,36 @@ import {
   type MoodCategory,
 } from "@/data/beach-moods-catalog";
 
-const categoryBadgeClass: Record<
-  Exclude<MoodCategory, "All">,
-  string
-> = {
-  Lifestyle: "bg-fuchsia-500/85",
-  Relaxation: "bg-sky-400/90",
-  Adventure: "bg-amber-500/90",
-  Family: "bg-teal-600/90",
-  Scenic: "bg-neutral-600/85",
-  Nature: "bg-emerald-600/90",
-  Luxury: "bg-amber-700/90",
-};
-
-function ArrowCircleIcon({
-  variant = "cyan",
-}: {
-  variant?: "cyan" | "white";
-}) {
-  const ring =
-    variant === "white"
-      ? "border-2 border-white text-white"
-      : "border-2 border-brand-cyan text-[#00CFC0]";
+function arrowIconSvg() {
   return (
-    <span
-      className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${ring}`}
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden
     >
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M5 12h14M13 6l6 6-6 6" />
-      </svg>
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
+/** Filled circle + white arrow (Trending moods cards). */
+function TrendingCardArrowButton({ accent }: { accent?: "cyan" }) {
+  const bg =
+    accent === "cyan"
+      ? "bg-[#00CFC0] shadow-md shadow-[#00CFC0]/35"
+      : "bg-teal-900 shadow-md shadow-black/25";
+  return (
+    <span
+      className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white ${bg}`}
+      aria-hidden
+    >
+      {arrowIconSvg()}
     </span>
   );
 }
@@ -58,14 +49,41 @@ function ArrowCircleIcon({
 function statusPillClass(status: (typeof trendingMoodsPreview)[number]["status"]) {
   switch (status) {
     case "trending":
-      return "bg-brand-yellow/95 text-neutral-900";
+      return "bg-amber-400/95 text-neutral-900";
     case "hot":
-      return "bg-orange-500/95 text-white";
+      return "bg-red-600/95 text-white";
     case "chill":
-      return "bg-teal-500/95 text-white";
+      return "bg-teal-900/95 text-white";
     default:
       return "bg-white/90 text-neutral-900";
   }
+}
+
+function TrendingStatusBadge({
+  status,
+  label,
+}: {
+  status: (typeof trendingMoodsPreview)[number]["status"];
+  label: string;
+}) {
+  const icon =
+    status === "hot" ? (
+      <span className="text-[11px] leading-none" aria-hidden>
+        🔥
+      </span>
+    ) : status === "chill" ? (
+      <span className="text-[11px] leading-none" aria-hidden>
+        ✨
+      </span>
+    ) : null;
+  return (
+    <span
+      className={`absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide shadow-md ${statusPillClass(status)}`}
+    >
+      {icon}
+      {label}
+    </span>
+  );
 }
 
 const heroChips: {
@@ -260,68 +278,67 @@ export function BrowseAllMoodsExperience() {
             <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <div className="mb-3 flex items-center gap-3">
-                  <span className="text-xs font-bold uppercase tracking-[0.25em] text-neutral-800">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-neutral-900 sm:text-xs">
                     Featured this season
                   </span>
-                  <span className="h-px flex-1 max-w-14 bg-neutral-800/35" />
+                  <span className="h-px flex-1 max-w-14 bg-neutral-900/25 sm:max-w-20" />
                 </div>
                 <h2
                   id="trending-moods-heading"
-                  className="font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl"
+                  className="font-sans text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl"
                 >
                   Trending{" "}
                   <span className="text-[#00CFC0]">moods</span>
                 </h2>
-                <p className="mt-3 max-w-xl text-base text-neutral-600 sm:text-lg">
-                  The most-explored beach categories right now.
+                <p className="mt-3 max-w-xl text-sm text-neutral-700 sm:text-base">
+                  The most-explored beach categories right now
                 </p>
               </div>
               <Link
                 href="#all-moods"
-                className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-cyan/60 decoration-2 underline-offset-4 transition hover:text-[#00CFC0]"
+                className="shrink-0 text-sm font-medium text-neutral-900 transition hover:text-[#00CFC0]"
               >
-                View all →
+                View All →
               </Link>
             </div>
 
-            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
               {trendingMoodsPreview.map((m) => (
                 <li key={m.slug}>
                   <Link
                     href={`/moods/${m.slug}`}
-                    className="group relative flex aspect-[3/5] min-h-[280px] flex-col overflow-hidden rounded-2xl border border-neutral-200/80 bg-neutral-900 shadow-lg sm:min-h-[320px]"
+                    className="group relative flex aspect-[3/5] min-h-[280px] flex-col overflow-hidden rounded-lg border border-neutral-200/90 bg-neutral-900 shadow-md transition-shadow duration-300 hover:shadow-lg sm:min-h-[300px]"
                   >
                     <div className="absolute inset-0 overflow-hidden">
                       <Image
                         src={m.imageSrc}
                         alt=""
                         fill
-                        className="object-cover transition-transform duration-300 ease-in-out will-change-transform group-hover:scale-110"
+                        className="object-cover transition-transform duration-300 ease-in-out will-change-transform group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/40 to-transparent" />
-                    <span
-                      className={`absolute left-3 top-3 z-10 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide shadow-md ${statusPillClass(m.status)}`}
-                    >
-                      {m.statusLabel}
-                    </span>
-                    <div className="relative z-10 mt-auto px-4 pb-6">
-                      <h3 className="font-sans text-lg font-bold uppercase leading-tight tracking-wide text-white sm:text-xl">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 from-[25%] via-black/50 via-[48%] to-transparent" />
+                    <TrendingStatusBadge
+                      status={m.status}
+                      label={m.statusLabel}
+                    />
+                    <div className="relative z-10 mt-auto px-4 pb-5 sm:px-5 sm:pb-6">
+                      <h3 className="font-sans text-xl font-extrabold uppercase leading-tight tracking-wide text-white sm:text-2xl">
                         {m.title}
                       </h3>
-                      <p
-                        className={`mt-2 line-clamp-2 text-sm leading-snug text-white/85 ${
-                          m.slug === "party-beaches" ? "uppercase" : ""
-                        }`}
-                      >
+                      <p className="mt-2 line-clamp-2 text-sm font-normal leading-snug text-white/90">
                         {m.description}
                       </p>
                       <div className="mt-4 flex items-center justify-between gap-2">
-                        <span className="text-sm font-semibold text-[#00CFC0]">
+                        <span className="text-sm font-semibold tabular-nums text-[#00CFC0]">
                           {m.beachCount} beaches
                         </span>
-                        <ArrowCircleIcon variant="white" />
+                        <TrendingCardArrowButton
+                          accent={
+                            m.slug === "snorkeling-beaches" ? "cyan" : undefined
+                          }
+                        />
                       </div>
                     </div>
                   </Link>
@@ -330,9 +347,12 @@ export function BrowseAllMoodsExperience() {
             </ul>
           </div>
         </section>
-        <div id="all-moods" className="scroll-mt-28 bg-white px-4 sm:px-6 lg:px-8 pb-16">
+        <div
+          id="all-moods"
+          className="scroll-mt-28 bg-neutral-50 px-4 pb-16 sm:px-6 lg:px-8"
+        >
           <nav
-            className="border-b border-neutral-200 mx-auto max-w-7xl "
+            className="mx-auto max-w-7xl border-b border-neutral-200/90"
             aria-label="Filter moods by category"
           >
             <div className="flex justify-start overflow-x-auto no-scrollbar">
@@ -371,58 +391,57 @@ export function BrowseAllMoodsExperience() {
             </div>
           </nav>
 
-          <div className="mx-auto max-w-7xl pt-4">
-            <div className="mb-10 flex flex-col gap-4 sm:mb-12 lg:flex-row lg:items-end lg:justify-between">
+          <div className="mx-auto max-w-7xl pt-6 sm:pt-8">
+            <div className="mb-8 flex flex-col gap-4 sm:mb-10 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <div className="mb-3 flex items-center gap-3">
-                  <span className="h-px w-10 bg-neutral-300 sm:w-12" />
-                  <span className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-neutral-900 sm:text-xs">
                     Explore every vibe
                   </span>
+                  <span className="h-px flex-1 max-w-14 bg-neutral-900/20 sm:max-w-20" />
                 </div>
-                <h2 className="font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
-                  All beach <span className="text-[#00CFC0]">moods</span>
+                <h2 className="font-sans text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-neutral-900 sm:text-4xl lg:text-5xl">
+                  All beach{" "}
+                  <span className="text-[#00CFC0]">moods</span>
                 </h2>
               </div>
-              <p className="text-sm font-medium text-neutral-600 lg:pb-1">
+              <p className="text-sm font-medium tabular-nums text-neutral-500 lg:pb-0.5">
                 {filteredCatalog.length}{" "}
                 {filteredCatalog.length === 1 ? "mood" : "moods"} found
               </p>
             </div>
 
-            <ul className="grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 xl:grid-cols-4">
+            <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
               {filteredCatalog.map((mood) => (
                 <li key={mood.id}>
                   <Link
                     href={`/moods/${mood.slug}`}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+                    className="group flex h-full flex-col overflow-hidden rounded-lg hover:border bg-white transition-all duration-300 hover:border-[#00CFC0] hover:shadow-lg"
                   >
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-100">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-200">
                       <Image
                         src={mood.imageSrc}
                         alt=""
                         fill
-                        className="object-cover transition-transform duration-300 ease-in-out will-change-transform group-hover:scale-110"
+                        className="object-cover transition-transform duration-300 ease-in-out will-change-transform group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       />
-                      <span
-                        className={`absolute left-3 top-3 rounded-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow-sm ${categoryBadgeClass[mood.category]}`}
-                      >
+                      <span className="absolute left-3 top-3 rounded-full bg-black/45 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-white shadow-sm backdrop-blur-sm">
                         {mood.category}
                       </span>
                     </div>
-                    <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
-                      <h3 className="font-sans text-base font-bold uppercase leading-snug tracking-tight text-neutral-900 sm:text-lg">
+                    <div className="flex flex-1 flex-col gap-3 p-5 sm:p-6">
+                      <h3 className="font-sans text-base font-extrabold uppercase leading-snug tracking-tight text-neutral-900 sm:text-lg">
                         {mood.title}
                       </h3>
                       <p className="line-clamp-2 flex-1 text-sm leading-relaxed text-neutral-600">
                         {mood.description}
                       </p>
-                      <div className="mt-2 flex items-center justify-between gap-3 border-t border-neutral-100 pt-4">
-                         <span className="text-sm font-semibold text-[#00CFC0]">
+                      <div className="mt-1 flex items-center justify-between gap-3 pt-4">
+                        <span className="text-sm font-semibold tabular-nums text-[#00CFC0]">
                           {mood.beachCount} beaches
                         </span>
-                        <ArrowCircleIcon />
+                        <TrendingCardArrowButton accent="cyan" />
                       </div>
                     </div>
                   </Link>
@@ -431,42 +450,53 @@ export function BrowseAllMoodsExperience() {
             </ul>
           </div>
         </div>
-        <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <div className="pointer-events-none absolute inset-0" aria-hidden>
-            <Image
-              src={beachImages.home.planTripBg}
-              alt=""
-              fill
-              className="object-cover object-center blur-[2px] scale-105"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-slate-950/75" />
-          </div>
-          <div className="relative z-10 mx-auto max-w-3xl text-center lg:max-w-4xl lg:text-left">
-            <div className="mb-4 flex items-center justify-center gap-3 lg:justify-start">
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-yellow">
-                Explore every vibe
-              </span>
-              <span className="hidden h-px w-16 bg-brand-yellow/80 sm:block" />
+        <section className="bg-neutral-50 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+          <div className="mx-auto max-w-7xl">
+            <div className="relative min-h-[20rem] overflow-hidden rounded-2xl border border-neutral-200/90 shadow-lg sm:min-h-[22rem] lg:min-h-[26rem]">
+              <div className="pointer-events-none absolute inset-0" aria-hidden>
+                <Image
+                  src={beachImages.vibesSection}
+                  alt=""
+                  fill
+                  className="scale-[1.03] object-cover object-[62%_42%] sm:object-[68%_40%] lg:object-[82%_center]"
+                  sizes="(max-width: 1280px) 100vw, 1216px"
+                />
+                <div
+                  className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0.78)_16%,rgba(0,0,0,0.52)_34%,rgba(0,0,0,0.28)_52%,rgba(0,0,0,0.1)_72%,transparent_100%)]"
+                  aria-hidden
+                />
+              </div>
+              <div className="relative z-10 flex min-h-[20rem] flex-col justify-center px-6 py-10 text-left sm:min-h-[22rem] sm:px-8 sm:py-12 lg:min-h-[26rem] lg:px-12 lg:py-14">
+                <div className="w-full max-w-md lg:max-w-[42%]">
+                  <div className="mb-4 flex items-center justify-start gap-3">
+                    <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-yellow">
+                      Explore every vibe
+                    </span>
+                    <span className="h-px w-12 shrink-0 bg-brand-yellow/80 sm:w-16" />
+                  </div>
+                  <h2 className="font-sans text-3xl font-extrabold uppercase leading-[1.08] tracking-tight text-white sm:text-4xl lg:text-5xl">
+                    <span className="block">Not sure what fits</span>
+                    <span className="block">
+                      your <span className="text-brand-yellow">mood?</span>
+                    </span>
+                  </h2>
+                  <p className="mt-5 max-w-sm text-base leading-relaxed text-white/90 sm:max-w-md sm:text-lg">
+                    Take our 60-second beach finder quiz and get personalized
+                    recommendations matched to your vibe, travel style, and dream
+                    destination.
+                  </p>
+                  <Link
+                    href="/get-started"
+                    className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-cyan/25 transition hover:brightness-110"
+                  >
+                    <span className="text-lg leading-none" aria-hidden>
+                      ✦
+                    </span>
+                    Find my perfect beach
+                  </Link>
+                </div>
+              </div>
             </div>
-            <h2 className="font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
-              Not sure what fits your{" "}
-              <span className="text-brand-yellow">mood?</span>
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/90 lg:mx-0 sm:text-lg">
-              Take our 60-second beach finder quiz and get personalized
-              recommendations matched to your vibe, travel style, and dream
-              destination.
-            </p>
-            <Link
-              href="/get-started"
-              className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-8 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-cyan/25 transition hover:brightness-110"
-            >
-              <span className="text-lg leading-none" aria-hidden>
-                ✦
-              </span>
-              Find my perfect beach
-            </Link>
           </div>
         </section>
 
@@ -494,22 +524,25 @@ export function BrowseAllMoodsExperience() {
 
             <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
               {exploreByRegionItems.map((r) => (
-                <li key={r.slug}>
+                <li key={r.slug} className="min-h-0">
                   <Link
                     href={`/explore-beaches?region=${encodeURIComponent(r.slug)}`}
-                    className="group relative flex aspect-square min-h-[140px] flex-col overflow-hidden rounded-2xl border border-neutral-200 shadow-md sm:min-h-[160px]"
+                    className="group relative flex aspect-square min-h-[140px] w-full origin-top-left flex-col overflow-hidden transition-[transform,box-shadow,outline] duration-300 ease-out hover:scale-[0.94] sm:min-h-[160px]"
                   >
                     <div className="absolute inset-0 overflow-hidden">
                       <Image
                         src={r.imageSrc}
                         alt=""
                         fill
-                        className="object-cover transition-transform duration-300 ease-in-out group-hover:scale-110"
+                        className="object-cover"
                         sizes="(max-width: 640px) 50vw, 16vw"
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/25 to-transparent" />
-                    <div className="relative z-10 mt-auto px-2 pb-4 text-center sm:px-3">
+                    <div
+                      className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[42%] bg-gradient-to-t from-black/95 via-black/65 to-transparent"
+                      aria-hidden
+                    />
+                    <div className="relative z-[2] mt-auto px-2 pb-4 text-center sm:px-3">
                       <span className="block text-[10px] font-bold uppercase leading-tight tracking-wide text-white sm:text-xs">
                         {r.name}
                       </span>
@@ -531,11 +564,11 @@ export function BrowseAllMoodsExperience() {
             </p>
             <h2 className="mt-4 font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl">
               Ready to discover your{" "}
-              <span className="text-[#00CFC0]">next escape?</span>
             </h2>
+            <p className="text-[#00CFC0] font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight sm:text-4xl">next escape?</p>
             <p className="mx-auto mt-5 max-w-xl text-base text-neutral-600 sm:text-lg">
-              Search thousands of curated beaches by mood, weather, and crowd —
-              then save the spots that feel like yours.
+            Thousands of beaches across every mood, every vibe, every corner of
+            the world — all in one place.
             </p>
             <Link
               href="/explore-beaches"
