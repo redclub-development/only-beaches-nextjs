@@ -1,56 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { beachImages } from "@/lib/beach-images";
 import { HorizontalCarouselRow } from "@/components/horizontal-carousel-row";
 import { IconHeart } from "@/components/icons";
-
-const stays = [
-  {
-    name: "Hotel Bellavista",
-    place: "New York, United States",
-    from: 1250,
-    night: 1250,
-    rating: "4.9",
-    reviews: 892,
-    src: beachImages.home.stay1,
-  },
-  {
-    name: "Hotel Paradiso",
-    place: "New York, United States",
-    from: 890,
-    night: 890,
-    rating: "4.9",
-    reviews: 543,
-    src: beachImages.home.stay2,
-  },
-  {
-    name: "Grand Hotel Tevere",
-    place: "New York, United States",
-    from: 350,
-    night: 350,
-    rating: "4.7",
-    reviews: 423,
-    src: beachImages.home.stay3,
-  },
-  {
-    name: "Hotel Bellavista",
-    place: "New York, United States",
-    from: 280,
-    night: 280,
-    rating: "4.6",
-    reviews: 301,
-    src: beachImages.home.stay4,
-  },
-  {
-    name: "Hotel Bellavista",
-    place: "New York, United States",
-    from: 280,
-    night: 280,
-    rating: "4.6",
-    reviews: 301,
-    src: beachImages.home.stay5,
-  },
-] as const;
+import { staysNearBeachesCatalog } from "@/data/stay-near-beaches-catalog";
 
 export function StayNearBeaches() {
   return (
@@ -81,12 +33,12 @@ export function StayNearBeaches() {
         </div>
 
         <HorizontalCarouselRow listClassName="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {stays.map((s, i) => (
+          {staysNearBeachesCatalog.map((s) => (
             <li
-              key={`${s.name}-${i}`}
+              key={s.slug}
               className="w-[78vw] shrink-0 snap-start sm:w-64 lg:w-[280px]"
             >
-              <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200/80 bg-white shadow-md">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-neutral-200/80 bg-white shadow-md transition hover:shadow-lg">
                 <div className="relative aspect-[3/4] w-full overflow-hidden">
                   <Image
                     src={s.src}
@@ -95,17 +47,26 @@ export function StayNearBeaches() {
                     className="object-cover transition duration-500 ease-out group-hover:scale-105"
                     sizes="(max-width: 640px) 78vw, (max-width: 1024px) 256px, 280px"
                   />
-                  <span className="absolute left-3 top-3 rounded-md bg-orange-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow">
+                  <Link
+                    href={`/hotels/${s.slug}`}
+                    className="absolute inset-0 z-[1] rounded-2xl outline-none ring-inset focus-visible:ring-2 focus-visible:ring-[#00CFC0] focus-visible:ring-offset-2"
+                    aria-label={`View ${s.name} in ${s.place}`}
+                  >
+                    <span className="sr-only">
+                      View {s.name}, from ${s.from} per night
+                    </span>
+                  </Link>
+                  <span className="pointer-events-none absolute left-3 top-3 z-[2] rounded-md bg-orange-500 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white shadow">
                     From ${s.from}
                   </span>
                   <button
                     type="button"
-                    className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/90 text-neutral-700 shadow backdrop-blur-sm"
+                    className="absolute right-3 top-3 z-[3] flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/90 text-neutral-700 shadow backdrop-blur-sm"
                     aria-label="Save stay"
                   >
                     <IconHeart className="h-4 w-4" />
                   </button>
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 pt-16">
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 pt-16">
                     <h3 className="text-sm font-bold uppercase tracking-wide text-white">
                       {s.name}
                     </h3>

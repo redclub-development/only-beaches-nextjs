@@ -9,7 +9,6 @@ import {
   nearbyBeachResults,
   nearbyExperiences,
   nearbyHeroStats,
-  nearbyLocationLabel,
   nearbyStays,
   weekendPicks,
   type NearbyBeachCard,

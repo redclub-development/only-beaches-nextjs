@@ -8,7 +8,7 @@ export const exploreAmenitySvg = {
   restrooms: "/explore-beaches/icon7.svg",
   lifeguard: "/explore-beaches/icon9.svg",
   beachBars: "/explore-beaches/icon16.svg",
-  surfSchools: "/explore-beaches/icon.svg",
+  surfSchools: "/explore-beaches/icons.svg",
   beachShops: "/explore-beaches/icon17.svg",
   firstAid: "/explore-beaches/icon18.svg",
   dogsOk: "/explore-beaches/icon10.svg",
