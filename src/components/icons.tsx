@@ -164,22 +164,7 @@ export function IconBikini({ className }: { className?: string }) {
   );
 }
 
-export function IconHeart({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden
-    >
-      <path d="M12 21s-7-4.5-7-10a5 5 0 0 1 9.5-2A5 5 0 0 1 19 11c0 5.5-7 10-7 10z" />
-    </svg>
-  );
-}
+
 
 export function IconPlus({ className }: { className?: string }) {
   return (

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { IconHeart, IconMapPin } from "@/components/icons";
+import { IconHeartNew, IconMapPin } from "@/components/icons";
 import { beachImages } from "@/lib/beach-images";
 import {
   nearbyBeachResults,
@@ -12,6 +12,7 @@ import {
   nearbyStays,
   weekendPicks,
   type NearbyBeachCard,
+  type NearbyWeekendPick,
 } from "@/data/beaches-near-you-page";
 
 const DROPDOWN_FILTERS = ["All Types", "Any Crowd", "Activities", "Amenities"] as const;
@@ -50,35 +51,143 @@ function formatDistance(km: number): string {
   return km < 10 ? `${km.toFixed(1)} km` : `${km.toFixed(1)} km`;
 }
 
+type CompactPickCardItem = {
+  name: string;
+  location: string;
+  imageSrc: string;
+  distanceKm: number;
+  tempF: number;
+  wavesLabel: string;
+  qualityLabel: string;
+  tags: readonly string[];
+};
+
+function CompactPickCard({ item }: { item: CompactPickCardItem }) {
+  const { name, location, imageSrc, distanceKm, tempF, wavesLabel, qualityLabel, tags } = item;
+  return (
+    <article className="group h-full">
+      <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-lg border-2 border-neutral-200 bg-white shadow-[0_10px_24px_-6px_rgba(0,0,0,0.18)] transition-[border-color,box-shadow] duration-300 ease-out group-hover:border-[#00CFC0] group-hover:shadow-[0_24px_48px_-8px_rgba(0,0,0,0.42)]">
+        <div className="relative aspect-[4/4] w-full shrink-0 overflow-hidden bg-neutral-200">
+          <Image
+            src={imageSrc}
+            alt=""
+            fill
+            className="object-cover"
+            sizes="280px"
+          />
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[42%] bg-gradient-to-t from-black/80 via-black/45 to-transparent"
+            aria-hidden
+          />
+          <Link
+            href="/explore-beaches"
+            className="absolute inset-0 z-[1] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#00CFC0]"
+            aria-label={`View ${name}`}
+          />
+          <span className="pointer-events-none absolute bottom-3 left-3 z-[2] inline-flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-[11px] font-semibold backdrop-blur-sm">
+            <IconMapPin className="h-3 w-3 shrink-0 text-[#00CFC0]" aria-hidden />
+            <span className="text-[#00CFC0]">{formatDistance(distanceKm)}</span>
+          </span>
+          <button
+            type="button"
+            className="absolute bottom-3 right-3 z-[3] flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/90 bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/45"
+            aria-label="Save beach"
+          >
+            <IconHeartNew className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="flex flex-1 flex-col border-t border-neutral-100 px-3 pb-3 pt-2.5 sm:px-4 sm:pb-4 sm:pt-3">
+          <h3 className="font-sans text-sm font-extrabold uppercase leading-snug tracking-wide text-neutral-900 line-clamp-1">
+            <Link
+              href="/explore-beaches"
+              className="transition-colors hover:text-[#00CFC0] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00CFC0] focus-visible:ring-offset-2"
+            >
+              {name}
+            </Link>
+          </h3>
+          <p className="mt-1 text-xs text-neutral-500">{location}</p>
+          <div className="mt-2.5 flex flex-wrap gap-1.5">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-800">
+              <IconSun className="shrink-0 text-orange-500" />
+              {tempF}°F
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-800">
+              <IconWavesSmall className="shrink-0 text-sky-600" />
+              {wavesLabel}
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-100 px-2.5 py-1 text-[11px] font-semibold text-neutral-800">
+              <IconThumbs className="shrink-0 text-emerald-600" />
+              {qualityLabel}
+            </span>
+          </div>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {tags.map((t) => (
+              <span
+                key={t}
+                className="rounded-full bg-[#00CFC0]/12 px-2.5 py-1 text-[11px] font-semibold text-teal-800"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function WeekendPickCard({ w }: { w: NearbyWeekendPick }) {
+  return <CompactPickCard item={w} />;
+}
+
+function LessCrowdedPickCard({ b }: { b: NearbyBeachCard }) {
+  const tags = [...new Set([...b.categories, ...b.features])].slice(0, 4);
+  return (
+    <CompactPickCard
+      item={{
+        name: b.name,
+        location: b.location,
+        imageSrc: b.imageSrc,
+        distanceKm: b.distanceKm,
+        tempF: b.tempF,
+        wavesLabel: b.wavesLabel,
+        qualityLabel: b.qualityLabel,
+        tags,
+      }}
+    />
+  );
+}
+
 function BeachResultCard({ b }: { b: NearbyBeachCard }) {
   return (
     <article className="group">
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-neutral-200 shadow-md ring-1 ring-neutral-200/90">
-        <Image
-          src={b.imageSrc}
-          alt=""
-          fill
-          className="object-cover transition duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-        <Link
-          href="/explore-beaches"
-          className="absolute inset-0 z-[1] rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan focus-visible:ring-offset-2"
-          aria-label={`View ${b.name}`}
-        />
-        <span className="pointer-events-none absolute bottom-3 left-3 z-[2] inline-flex items-center gap-1 rounded-full bg-black/65 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
-          <IconMapPin className="h-3 w-3 shrink-0 text-[#00CFC0]" />
-          {formatDistance(b.distanceKm)}
-        </span>
-        <button
-          type="button"
-          className="absolute bottom-3 right-3 z-[3] flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/90 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40"
-          aria-label="Save beach"
-        >
-          <IconHeart className="h-4 w-4" />
-        </button>
-      </div>
-      <div className="mt-4 px-0.5">
+      <div className="overflow-hidden rounded-lg border-2 border-neutral-200 bg-white shadow-[0_10px_24px_-6px_rgba(0,0,0,0.18)] transition-[border-color,box-shadow] duration-300 ease-out group-hover:border-[#00CFC0] group-hover:shadow-[0_24px_48px_-8px_rgba(0,0,0,0.42)]">
+        <div className="relative aspect-[4/4] w-full overflow-hidden bg-neutral-200">
+          <Image
+            src={b.imageSrc}
+            alt=""
+            fill
+            className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, 33vw"
+          />
+          <Link
+            href="/explore-beaches"
+            className="absolute inset-0 z-[1] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#00CFC0]"
+            aria-label={`View ${b.name}`}
+          />
+          <span className="pointer-events-none absolute bottom-3 left-3 z-[2] inline-flex items-center gap-1 rounded-full bg-black/65 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-sm">
+            <IconMapPin className="h-3 w-3 shrink-0 text-[#00CFC0]" />
+            {formatDistance(b.distanceKm)}
+          </span>
+          <button
+            type="button"
+            className="absolute bottom-3 right-3 z-[3] flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/90 bg-black/25 text-white backdrop-blur-sm transition hover:bg-black/40"
+            aria-label="Save beach"
+          >
+            <IconHeartNew className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="border-t border-neutral-100 px-4 pb-4 pt-3">
         <h3 className="font-sans text-base font-extrabold uppercase leading-snug tracking-wide text-neutral-900 sm:text-lg">
           <Link href="/explore-beaches" className="hover:text-[#00CFC0]">
             {b.name}
@@ -121,6 +230,7 @@ function BeachResultCard({ b }: { b: NearbyBeachCard }) {
               {f}
             </span>
           ))}
+        </div>
         </div>
       </div>
     </article>
@@ -344,64 +454,10 @@ export function BeachesNearYouPage() {
               View all →
             </Link>
           </div>
-          <ul className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-4 lg:gap-6 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
+          <ul className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:gap-5 lg:overflow-visible xl:gap-6 [&::-webkit-scrollbar]:hidden">
             {weekendPicks.map((w) => (
-              <li key={w.id} className="w-[min(280px,82vw)] shrink-0 snap-start lg:w-auto">
-                <article className="group">
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-200 shadow-md ring-1 ring-neutral-200/80">
-                    <Image
-                      src={w.imageSrc}
-                      alt=""
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                      sizes="280px"
-                    />
-                    <Link
-                      href="/explore-beaches"
-                      className="absolute inset-0 z-[1] rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan focus-visible:ring-offset-2"
-                      aria-label={`View ${w.name}`}
-                    />
-                    <span className="pointer-events-none absolute bottom-3 left-3 z-[2] inline-flex items-center gap-1 rounded-full bg-teal-700/95 px-2.5 py-1 text-[11px] font-semibold text-white">
-                      <IconMapPin className="h-3 w-3" />
-                      {w.distanceKm} km
-                    </span>
-                    <button
-                      type="button"
-                      className="absolute bottom-3 right-3 z-[3] flex h-9 w-9 items-center justify-center rounded-full border-2 border-white/90 bg-black/20 text-white backdrop-blur-sm"
-                      aria-label="Save"
-                    >
-                      <IconHeart className="h-4 w-4" />
-                    </button>
-                  </div>
-                  <h3 className="mt-4 font-mono text-sm font-bold uppercase leading-snug tracking-tight text-neutral-900 line-clamp-1">
-                    <Link href="/explore-beaches" className="hover:text-[#00CFC0]">
-                      {w.name}
-                    </Link>
-                  </h3>
-                  <p className="mt-1 text-xs text-neutral-500">{w.location}</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <span className="inline-flex items-center gap-1 rounded-md bg-orange-50 px-2 py-1 text-[11px] font-semibold text-orange-800">
-                      <IconSun className="text-orange-500" />
-                      {w.tempF}°F
-                    </span>
-                    <span className="inline-flex items-center gap-1 rounded-md bg-sky-50 px-2 py-1 text-[11px] font-semibold text-sky-800">
-                      ≈ {w.wavesLabel}
-                    </span>
-                    <span className="inline-flex items-center gap-1 rounded-md bg-emerald-50 px-2 py-1 text-[11px] font-semibold text-emerald-800">
-                      👍 {w.qualityLabel}
-                    </span>
-                  </div>
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {w.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-md border border-brand-cyan/25 bg-brand-cyan/10 px-2 py-0.5 text-[11px] font-semibold text-[#00CFC0]"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </article>
+              <li key={w.id} className="flex w-[min(280px,82vw)] shrink-0 snap-start lg:w-auto">
+                <WeekendPickCard w={w} />
               </li>
             ))}
           </ul>
@@ -411,18 +467,30 @@ export function BeachesNearYouPage() {
       {/* —— Beat the crowds —— */}
       <section className="bg-white px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-8 flex items-center gap-3">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">Beat the crowds</span>
-            <span className="h-px max-w-12 flex-1 bg-neutral-300" />
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <div className="mb-2 flex items-center gap-3">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">Beat the crowds</span>
+                <span className="h-px max-w-12 flex-1 bg-neutral-300" />
+              </div>
+              <h2 className="font-sans text-2xl font-extrabold uppercase tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl">
+                Less <span className="text-[#00CFC0]">crowded</span> picks
+              </h2>
+              <p className="mt-2 max-w-xl text-sm text-neutral-600 sm:text-base">
+                Same coastline energy — fewer towels on the sand.
+              </p>
+            </div>
+            <Link
+              href="/explore-beaches"
+              className="shrink-0 text-sm font-semibold text-neutral-800 underline decoration-brand-cyan/50 decoration-2 underline-offset-4 hover:text-[#00CFC0]"
+            >
+              View all →
+            </Link>
           </div>
-          <h2 className="font-sans text-2xl font-extrabold uppercase tracking-tight text-neutral-900 sm:text-3xl lg:text-4xl">
-            Less <span className="text-[#00CFC0]">crowded</span> picks
-          </h2>
-          <p className="mt-2 max-w-xl text-sm text-neutral-600 sm:text-base">Same coastline energy — fewer towels on the sand.</p>
-          <ul className="no-scrollbar mt-8 flex snap-x gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
-            {nearbyBeachResults.slice(0, 3).map((b) => (
-              <li key={`less-${b.id}`} className="w-[min(300px,85vw)] shrink-0 snap-start lg:w-auto">
-                <BeachResultCard b={b} />
+          <ul className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:gap-5 lg:overflow-visible xl:gap-6 [&::-webkit-scrollbar]:hidden">
+            {nearbyBeachResults.slice(0, 5).map((b) => (
+              <li key={`less-${b.id}`} className="flex w-[min(280px,82vw)] shrink-0 snap-start lg:w-auto">
+                <LessCrowdedPickCard b={b} />
               </li>
             ))}
           </ul>
@@ -447,26 +515,32 @@ export function BeachesNearYouPage() {
               View all →
             </Link>
           </div>
-          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {nearbyExperiences.map((e) => (
-              <li key={e.id}>
-                <Link href="/explore-beaches" className="group block">
-                  <div className="relative aspect-video overflow-hidden rounded-xl bg-neutral-200 shadow-md ring-1 ring-neutral-200/80">
-                    <Image
-                      src={e.imageSrc}
-                      alt=""
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 50vw, 25vw"
-                    />
-                    <span className={`absolute left-3 top-3 rounded-md px-2 py-1 text-[10px] font-bold uppercase tracking-wide ${e.tagClass}`}>
-                      {e.activityTag}
-                    </span>
-                  </div>
-                  <h3 className="mt-3 text-sm font-extrabold uppercase tracking-wide text-neutral-900">{e.title}</h3>
-                  <p className="mt-1 text-xs text-neutral-500">{e.distanceKm} km away</p>
-                  <p className="mt-2 text-sm font-semibold text-amber-600">{e.priceLabel}</p>
-                </Link>
+              <li key={e.id} className="flex w-[min(280px,82vw)] shrink-0 snap-start">
+                <article className="group h-full w-full min-w-0">
+                  <Link href="/explore-beaches" className="block h-full w-full">
+                    <div className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-lg border-2 border-neutral-200 bg-white shadow-[0_10px_24px_-6px_rgba(0,0,0,0.18)] transition-[border-color,box-shadow] duration-300 ease-out group-hover:border-[#00CFC0] group-hover:shadow-[0_24px_48px_-8px_rgba(0,0,0,0.42)]">
+                      <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-neutral-200">
+                        <Image
+                          src={e.imageSrc}
+                          alt=""
+                          fill
+                          className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                          sizes="280px"
+                        />
+                        <span className={`pointer-events-none absolute left-3 top-3 z-[1] rounded-md px-2 py-1 text-[10px] font-bold uppercase tracking-wide ${e.tagClass}`}>
+                          {e.activityTag}
+                        </span>
+                      </div>
+                      <div className="flex flex-1 flex-col border-t border-neutral-100 px-3 pb-3 pt-2.5 sm:px-4 sm:pb-4 sm:pt-3">
+                        <h3 className="text-sm font-extrabold uppercase tracking-wide text-neutral-900">{e.title}</h3>
+                        <p className="mt-1 text-xs text-neutral-500">{e.distanceKm} km away</p>
+                        <p className="mt-2 text-sm font-semibold text-amber-600">{e.priceLabel}</p>
+                      </div>
+                    </div>
+                  </Link>
+                </article>
               </li>
             ))}
           </ul>
@@ -493,35 +567,41 @@ export function BeachesNearYouPage() {
           <ul className="no-scrollbar flex snap-x gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-5 lg:gap-5 lg:overflow-visible [&::-webkit-scrollbar]:hidden">
             {nearbyStays.map((s) => (
               <li key={s.id} className="w-[min(260px,78vw)] shrink-0 snap-start lg:w-auto">
-                <Link href="/explore-beaches" className="group block">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-neutral-200 shadow-md ring-1 ring-neutral-200/80">
-                    <Image
-                      src={s.imageSrc}
-                      alt=""
-                      fill
-                      className="object-cover transition duration-300 group-hover:scale-105"
-                      sizes="260px"
-                    />
-                    <span className="absolute left-3 top-3 rounded-md bg-brand-yellow px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-900 shadow">
-                      From ${s.priceFrom.toLocaleString()}
-                    </span>
-                  </div>
-                  <h3 className="mt-4 text-xs font-extrabold uppercase leading-snug text-neutral-900">{s.name}</h3>
-                  <p className="mt-1 text-[11px] text-neutral-500">{s.distanceLine}</p>
-                  <div className="mt-3 flex items-center justify-between gap-2">
-                    <span className="text-sm font-bold text-[#00CFC0]">
-                      ${s.priceNight.toLocaleString()}
-                      <span className="text-xs font-semibold text-neutral-500"> /night</span>
-                    </span>
-                    <span className="text-xs font-semibold text-neutral-600">
-                      <span className="text-amber-500" aria-hidden>
-                        ★
-                      </span>{" "}
-                      {s.rating}{" "}
-                      <span className="text-neutral-400">({s.reviewCount.toLocaleString()})</span>
-                    </span>
-                  </div>
-                </Link>
+                <article className="group h-full">
+                  <Link href="/explore-beaches" className="block h-full">
+                    <div className="flex h-full min-h-0 flex-col overflow-hidden rounded-lg border-2 border-neutral-200 bg-white shadow-[0_10px_24px_-6px_rgba(0,0,0,0.18)] transition-[border-color,box-shadow] duration-300 ease-out group-hover:border-[#00CFC0] group-hover:shadow-[0_24px_48px_-8px_rgba(0,0,0,0.42)]">
+                      <div className="relative aspect-[4/5] w-full shrink-0 overflow-hidden bg-neutral-200">
+                        <Image
+                          src={s.imageSrc}
+                          alt=""
+                          fill
+                          className="object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                          sizes="260px"
+                        />
+                        <span className="pointer-events-none absolute left-3 top-3 z-[1] rounded-md bg-brand-yellow px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-900 shadow">
+                          From ${s.priceFrom.toLocaleString()}
+                        </span>
+                      </div>
+                      <div className="flex flex-1 flex-col border-t border-neutral-100 px-3 pb-3 pt-2.5 sm:px-4 sm:pb-4 sm:pt-3">
+                        <h3 className="text-xs font-extrabold uppercase leading-snug text-neutral-900">{s.name}</h3>
+                        <p className="mt-1 text-[11px] text-neutral-500">{s.distanceLine}</p>
+                        <div className="mt-3 flex items-center justify-between gap-2">
+                          <span className="text-sm font-bold text-[#00CFC0]">
+                            ${s.priceNight.toLocaleString()}
+                            <span className="text-xs font-semibold text-neutral-500"> /night</span>
+                          </span>
+                          <span className="text-xs font-semibold text-neutral-600">
+                            <span className="text-amber-500" aria-hidden>
+                              ★
+                            </span>{" "}
+                            {s.rating}{" "}
+                            <span className="text-neutral-400">({s.reviewCount.toLocaleString()})</span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </article>
               </li>
             ))}
           </ul>
@@ -533,8 +613,9 @@ export function BeachesNearYouPage() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-neutral-500">Ready to go?</p>
           <h2 className="mt-3 font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight text-neutral-900 sm:text-4xl">
-            Plan your <span className="text-[#00CFC0]">beach day</span>
+            Plan your
           </h2>
+          <p className="text-[#00CFC0] font-sans text-3xl font-extrabold uppercase leading-tight tracking-tight sm:text-4xl mt-2">beach day</p>
           <p className="mt-4 text-neutral-600 sm:text-lg">
             Save beaches, create a trip itinerary, and share your beach day plan with friends.
           </p>

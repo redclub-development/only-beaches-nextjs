@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { HorizontalCarouselRow } from "@/components/horizontal-carousel-row";
-import { IconHeart } from "@/components/icons";
+import { IconHeartNew } from "@/components/icons";
 
 export type TrendingBeachCard = {
   n: string;
@@ -45,7 +45,7 @@ export function TrendingBeachesCarousel({ cards }: TrendingBeachesCarouselProps)
                   className="absolute bottom-14 right-3 flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/90 text-neutral-700 shadow-md backdrop-blur-sm transition hover:bg-white"
                   aria-label="Save beach"
                 >
-                  <IconHeart className="h-5 w-5" />
+                  <IconHeartNew className="h-5 w-5" />
                 </button>
                 <div className="absolute bottom-3 left-3 right-3">
                   <span className="inline-block rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold text-neutral-800 backdrop-blur-sm sm:text-xs">

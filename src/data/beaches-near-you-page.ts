@@ -238,6 +238,18 @@ export const weekendPicks: NearbyWeekendPick[] = [
     qualityLabel: "Excellent",
     tags: ["Quiet", "Sunset"],
   },
+  {
+    id: "w5",
+    name: "Zuma Beach",
+    location: "Malibu, CA",
+    imageSrc: "/Images/image9.jpg",
+    distanceKm: 4.1,
+    tempF: 82,
+    wavesLabel: "Flat",
+    qualityLabel: "Excellent",
+    tags: ["Family", "Wide sand"],
+  },
+
 ];
 
 export type NearbyExperience = {
@@ -286,6 +298,15 @@ export const nearbyExperiences: NearbyExperience[] = [
     distanceKm: 13.1,
     priceLabel: "From $55/hr",
     imageSrc: "/Images/image8.png",
+  },
+  {
+    id: "e5",
+    activityTag: "Hike",
+    tagClass: "bg-teal-500/95 text-white",
+    title: "Torrey Pines Hike",
+    distanceKm: 13.1,
+    priceLabel: "From $55/hr",
+    imageSrc: "/Images/exp2.png",
   },
 ];
 

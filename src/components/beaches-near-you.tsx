@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { beachImages } from "@/lib/beach-images";
 import { HorizontalCarouselRow } from "@/components/horizontal-carousel-row";
-import { IconHeart } from "@/components/icons";
+import { IconHeartNew } from "@/components/icons";
 
 const filters: {
   emoji: string;
@@ -138,7 +138,7 @@ export function BeachesNearYou() {
                     className="absolute bottom-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/90 text-neutral-700 shadow backdrop-blur-sm"
                     aria-label="Save"
                   >
-                    <IconHeart className="h-4 w-4" />
+                    <IconHeartNew className="h-4 w-4" />
                   </button>
                 </div>
                 <div className="p-4">
